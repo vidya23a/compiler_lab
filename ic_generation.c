@@ -136,3 +136,52 @@ int main(){
 	quadruple();
 	triple();
 }
+
+
+
+
+
+
+
+student@admincse-OptiPlex-5055-Ryzen-CPU:~/Desktop/vidya$ ./a.out 
+Enter the expression
+a+b*c
+The postfix expression is:abc*+
+
+GENERAL THREE ADDRESS CODE
+t1=b*c
+t2=a+t1
+
+QUADRUPLE REPRESENTATION
+Op	arg1	arg2	res
+*	b	c	t1
++	a	t1	t2
+
+TRIPLE REPRESENTATION
+  	Op	arg1	arg2
+(0)	*	b	c
+(1)	+	a	(0)
+student@admincse-OptiPlex-5055-Ryzen-CPU:~/Desktop/vidya$ ./a.out 
+Enter the expression
+a+b*c-d/e
+The postfix expression is:abc*+de/-
+
+GENERAL THREE ADDRESS CODE
+t1=b*c
+t2=a+t1
+t3=d/e
+t4=t2-t3
+
+QUADRUPLE REPRESENTATION
+Op	arg1	arg2	res
+*	b	c	t1
++	a	t1	t2
+/	d	e	t3
+-	t2	t3	t4
+
+TRIPLE REPRESENTATION
+  	Op	arg1	arg2
+(0)	*	b	c
+(1)	+	a	(0)
+(2)	/	d	e
+(3)	-	(1)	(2)
