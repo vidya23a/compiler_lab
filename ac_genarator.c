@@ -76,3 +76,27 @@ int main(){
 	acgen(start);
 	
 }
+
+
+student@admincse-OptiPlex-5055-Ryzen-CPU:~/Desktop/vidya$ gcc ac_genarator.c 
+student@admincse-OptiPlex-5055-Ryzen-CPU:~/Desktop/vidya$ ./a.out 
+Enter the expression
+a+b*c
+Enter the starting address:2000
+The postfix expression is:abc*+
+2000	MOV A,a
+2001	PUSH A
+2002	MOV A,b
+2003	PUSH A
+2004	MOV A,c
+2005	PUSH A
+2006	POP B
+2007	POP A
+2008	MUL A,B
+2009	PUSH A
+2010	POP B
+2011	POP A
+2012	ADD A,B
+2013	PUSH A
+2014	POP A
+2015	HLT
