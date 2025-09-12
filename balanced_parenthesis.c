@@ -57,3 +57,24 @@ int main(int argc,char*argv[]){
 		printf("Balanced Parenthesis. Syntax verified!\n");
 }
 
+
+
+student@admincse-OptiPlex-5055-Ryzen-CPU:~/Desktop/vidya$ gcc balanced_parenthesis.c 
+student@admincse-OptiPlex-5055-Ryzen-CPU:~/Desktop/vidya$ ./a.out example.c
+Paranthesis mismatch found at line 8
+Closing parenthesis missing at line14
+
+
+example.c
+#include <stdio.h>
+
+int main() {
+    int arr[5;       
+    int a = 10;
+    int b = 20;
+
+    if (a < b)) {     
+        printf("a is less than b\n";
+                 
+
+    return 0;
