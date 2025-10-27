@@ -1,0 +1,67 @@
+S → if E then S else S | if E then S | stmt
+E → cond
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+char str[30],stack[30],ch;
+int j=0,sl=1,top=0;
+
+int reduce(){
+    int z;
+    for(int z=0;z<top;z++){
+        if(stack[z]=='s'){
+            stack[z]='S';
+            printf("%d\t$%s\t%s$\tReduce S->s\n",sl,stack,str);
+        }
+    }
+    for(int z=0;z<top;z++){
+        if(stack[z]=='c'){
+            stack[z]='E';
+            printf("%d\t$%s\t%s$\tReduce E->c\n",sl,stack,str);
+        }
+    }
+    for(int z=0;z<top;z++){
+        if(stack[z]=='i'&&stack[z+1]=='E'&&stack[z+2]=='t'&&stack[z+3]=='S'&&stack[z+4]=='e'&&stack[z+5]=='S'){
+            stack[z]='S';
+            stack[z+1]='\0';
+            top=z+1;
+            printf("%d\t$%s\t%s$\tReduce S->iEtSeS\n",sl,stack,str);
+        }
+    }
+    for(int z=0;z<top;z++){
+        if(stack[z]=='i'&&stack[z+1]=='E'&&stack[z+2]=='t'&&stack[z+3]=='S'){
+            stack[z]='S';
+            stack[z+1]='\0';
+            top=z+1;
+            printf("%d\t$%s\t%s$\tReduce S->iEtS\n",sl,stack,str);
+        }
+    }
+}
+
+
+int main(){
+    printf("Enter the string:");
+    scanf("%s",str);
+    printf("Sl_No\tStack\tInput\tAction\n\n");
+    printf("%d\t$%s\t%s$\t--\n",sl,stack,str);
+    
+    while(str[j]!='\0'){
+        ch=str[j];
+        str[j]=' ';
+        stack[top++]=ch;
+        stack[top]='\0';
+        printf("%d\t$%s\t%s$\tShift->%c\n",sl,stack,str,ch);
+        j++;
+        reduce();
+    }
+    if(stack[0]=='S'&&stack[1]=='\0') printf("Accepted\n");
+    else printf("Rejecetd\n");
+}
+
+
+
+
+
