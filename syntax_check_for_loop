@@ -1,0 +1,74 @@
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+
+int main(int argc, char* argv[])
+{
+    char ch,lexeme[200][300],check[30];
+    FILE* fp1=fopen(argv[1],"r");
+    int i=0,j=0,flag=0;
+    
+    
+    while((ch=fgetc(fp1))!=EOF){
+        if(isalnum(ch))
+        {
+            while(isalnum(ch)){
+                lexeme[i][j++]=ch;
+                ch=fgetc(fp1);
+            }
+            lexeme[i][j]='\0';
+            i++;
+            j=0;
+            ungetc(ch,fp1);
+        }
+        
+        else{
+            lexeme[i][j++]=ch;
+            lexeme[i][j]='\0';
+            i++;
+            j=0;
+        }
+    }
+    
+    printf("Printing lexemes: \n");
+    
+    for(int k=0;k<i;k++)
+    {
+        printf("%s\n",lexeme[k]);
+    }
+    
+    for(int k=0;k<i;k++)
+    {
+        if(strcmp("for",lexeme[k])==0)
+        {
+            int c=0;
+            int j=k;
+            strcpy(check, lexeme[j++]);
+            while(strcmp(check,")")!=0)
+            {
+                if (strcmp(check, ";") == 0)
+                {
+                    c++;
+                }
+                strcpy(check, lexeme[j++]);
+            }
+            
+            if(c!=2)
+            {
+                flag=1;
+            }
+        }
+    }
+    
+    if(flag==0)
+        printf("Syntax correct\n");
+    else
+        printf("Syntax incorrect\n");
+}
+
+
+
+
+
+
+
